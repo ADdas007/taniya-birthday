@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+<title>Happy Birthday Taniya ❤️</title>
+
+<style>
+
+body{
+margin:0;
+font-family:Poppins;
+background:black;
+color:white;
+text-align:center;
+overflow-x:hidden;
+}
+
+/* star background */
+
+canvas{
+position:fixed;
+top:0;
+left:0;
+z-index:-1;
+}
+
+/* sections */
+
+section{
+min-height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+padding:30px;
+}
+
+.card{
+background:rgba(0,0,0,.65);
+padding:35px;
+border-radius:20px;
+max-width:750px;
+box-shadow:0 0 40px rgba(255,0,100,.4);
+}
+
+/* buttons */
+
+button{
+background:#ff3c7d;
+border:none;
+padding:12px 25px;
+border-radius:30px;
+font-size:18px;
+color:white;
+cursor:pointer;
+margin-top:20px;
+}
+
+button:hover{
+background:#ff1c63;
+}
+
+/* hearts */
+
+.heart{
+position:fixed;
+bottom:-20px;
+font-size:22px;
+animation:float 8s linear infinite;
+}
+
+@keyframes float{
+0%{transform:translateY(0)}
+100%{transform:translateY(-110vh)}
+}
+
+/* reasons grid */
+
+.reasons{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:12px;
+margin-top:20px;
+}
+
+.reason{
+background:rgba(255,255,255,.1);
+padding:12px;
+border-radius:10px;
+}
+
+/* gallery */
+
+.gallery img{
+width:230px;
+border-radius:15px;
+margin:10px;
+}
+
+/* cake */
+
+.cake{
+font-size:130px;
+cursor:pointer;
+}
+
+.hidden{display:none}
+
+/* heart game */
+
+#game{
+width:320px;
+height:300px;
+background:rgba(255,255,255,.05);
+border-radius:20px;
+position:relative;
+overflow:hidden;
+}
+
+.catch{
+position:absolute;
+font-size:26px;
+cursor:pointer;
+}
+
+</style>
+</head>
+
+<body>
+
+<audio autoplay loop>
+<source src="song.mp3">
+</audio>
+
+<canvas id="stars"></canvas>
+
+<script>
+
+/* floating hearts */
+
+setInterval(()=>{
+
+let heart=document.createElement("div")
+
+heart.className="heart"
+
+heart.innerHTML="❤️"
+
+heart.style.left=Math.random()*100+"%"
+
+heart.style.fontSize=(20+Math.random()*25)+"px"
+
+document.body.appendChild(heart)
+
+setTimeout(()=>heart.remove(),8000)
+
+},300)
+
+</script>
+
+<!-- INTRO -->
+
+<section id="intro">
+
+<div class="card">
+
+<h1>Happy Birthday Taniya ❤️</h1>
+
+<p id="typing"></p>
+
+<button onclick="next('reasons')">Start the Surprise</button>
+
+</div>
+
+</section>
+
+
+<!-- REASONS -->
+
+<section id="reasons" class="hidden">
+
+<div class="card">
+
+<h2>22 Reasons I Adore You 💖</h2>
+
+<div class="reasons">
+
+<div class="reason">Your beautiful smile</div>
+<div class="reason">Your kindness</div>
+<div class="reason">Your laugh</div>
+<div class="reason">Your positive energy</div>
+<div class="reason">Your intelligence</div>
+<div class="reason">Your eyes</div>
+<div class="reason">Your style</div>
+<div class="reason">Your caring nature</div>
+<div class="reason">Your honesty</div>
+<div class="reason">Your charm</div>
+<div class="reason">Your confidence</div>
+<div class="reason">Your warmth</div>
+<div class="reason">Your humor</div>
+<div class="reason">Your patience</div>
+<div class="reason">Your ambition</div>
+<div class="reason">Your voice</div>
+<div class="reason">Your positivity</div>
+<div class="reason">Your cuteness</div>
+<div class="reason">Your uniqueness</div>
+<div class="reason">Your energy</div>
+<div class="reason">The way you make me smile</div>
+<div class="reason">Because you're Taniya ❤️</div>
+
+</div>
+
+<button onclick="next('memory')">Continue</button>
+
+</div>
+
+</section>
+
+
+<!-- MEMORY -->
+
+<section id="memory" class="hidden">
+
+<div class="card">
+
+<h2>Our Memories 📸</h2>
+
+<div class="gallery">
+
+<img src="photo1.jpg">
+<img src="photo2.jpg">
+<img src="photo3.jpg">
+
+</div>
+
+<button onclick="next('gameSection')">Play Game</button>
+
+</div>
+
+</section>
+
+
+<!-- HEART GAME -->
+
+<section id="gameSection" class="hidden">
+
+<div class="card">
+
+<h2>Catch My Love 💘</h2>
+
+<p>Catch 10 hearts!</p>
+
+<div id="game"></div>
+
+<p id="score">Score: 0</p>
+
+</div>
+
+</section>
+
+
+<!-- CAKE -->
+
+<section id="cakeSection" class="hidden">
+
+<div class="card">
+
+<h2>Blow the Birthday Candles 🎂</h2>
+
+<div class="cake" onclick="startMic()">🎂</div>
+
+<p id="mictext">Click cake then blow into microphone 🎤</p>
+
+</div>
+
+</section>
+
+
+<!-- FINAL -->
+
+<section id="final" class="hidden">
+
+<div class="card">
+
+<h2>My Wish For You ❤️</h2>
+
+<p>
+
+Taniya,
+
+You are one of the most amazing people I've ever met.
+
+Your smile brightens every day  
+and your presence makes life more beautiful.
+
+I hope this year brings you happiness, love, success, and dreams coming true.
+
+Happy Birthday Taniya 🎉❤️
+
+</p>
+
+<button onclick="confess()">Secret Message</button>
+
+<p id="confessText"></p>
+
+</div>
+
+</section>
+
+
+<script>
+
+/* page navigation */
+
+function next(id){
+document.querySelectorAll("section").forEach(s=>s.classList.add("hidden"))
+document.getElementById(id).classList.remove("hidden")
+}
+
+/* typewriter */
+
+let text="Today the world celebrates the birthday of someone truly special."
+let i=0
+
+function type(){
+if(i<text.length){
+document.getElementById("typing").innerHTML+=text.charAt(i)
+i++
+setTimeout(type,40)
+}
+}
+type()
+
+
+/* heart game */
+
+let score=0
+
+function spawn(){
+
+let h=document.createElement("div")
+
+h.className="catch"
+
+h.innerHTML="❤️"
+
+h.style.left=Math.random()*280+"px"
+h.style.top=Math.random()*260+"px"
+
+h.onclick=function(){
+
+score++
+
+document.getElementById("score").innerText="Score: "+score
+
+h.remove()
+
+if(score>=10){
+next("cakeSection")
+}
+
+}
+
+document.getElementById("game").appendChild(h)
+
+setTimeout(()=>h.remove(),2000)
+
+}
+
+setInterval(spawn,800)
+
+
+/* microphone blowing */
+
+function startMic(){
+
+navigator.mediaDevices.getUserMedia({audio:true})
+
+.then(stream=>{
+
+document.querySelector(".cake").innerHTML="🍰"
+
+document.getElementById("mictext").innerHTML="Candles blown! 🎉"
+
+setTimeout(()=>next("final"),2000)
+
+})
+
+}
+
+
+/* confession */
+
+function confess(){
+
+document.getElementById("confessText").innerHTML=
+"I think you are truly special to me ❤️"
+
+}
+
+/* star animation */
+
+const canvas=document.getElementById("stars")
+
+const ctx=canvas.getContext("2d")
+
+canvas.width=window.innerWidth
+canvas.height=window.innerHeight
+
+let stars=[]
+
+for(let i=0;i<150;i++){
+stars.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height})
+}
+
+function draw(){
+
+ctx.clearRect(0,0,canvas.width,canvas.height)
+
+ctx.fillStyle="white"
+
+stars.forEach(s=>{
+ctx.fillRect(s.x,s.y,2,2)
+s.y+=0.4
+if(s.y>canvas.height)s.y=0
+})
+
+requestAnimationFrame(draw)
+
+}
+
+draw()
+
+</script>
+
+</body>
+</html>
